@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/user_detail_nav_graph"
+    app:startDestination="@id/followerListFragment">
+
+    <fragment
+        android:id="@+id/followerListFragment"
+        android:name="com.sample.githubconnect.view.fragments.FollowerListFragment"
+        android:label="FollowerListFragment"
+        tools:layout="@layout/fragment_following_list">
+        <action
+            android:id="@+id/action_followerListFragment_to_followingListFragment"
+            app:destination="@id/followingListFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/followingListFragment"
+        android:name="com.sample.githubconnect.view.fragments.FollowingListFragment"
+        android:label="FollowingListFragment"
+        tools:layout="@layout/fragment_following_list">
+        <action
+            android:id="@+id/action_followingListFragment_to_followerListFragment"
+            app:destination="@id/followerListFragment" />
+    </fragment>
+</navigation>
+
