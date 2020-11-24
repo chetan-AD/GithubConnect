@@ -10,3 +10,8 @@ Features & API used in project :
 - Android Data Binding
 - Unit test for view model which contains LiveData & PagingData
 
+- User List
+<img src="https://github.com/chetan-AD/GithubConnect/blob/master/home.png?raw=true" width=50% height=50%>
+
+- User Details
+<img src="https://github.com/chetan-AD/GithubConnect/blob/master/user_details.png?raw=true" width=50% height=50%>
