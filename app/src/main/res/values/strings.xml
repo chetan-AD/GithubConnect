@@ -3,4 +3,7 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="user_name">Enter Git User Name</string>
+    <string name="try_again">Something is wrong. Try again after sometime!</string>
+    <string name="no_records_available">Please enter Github username \nto search details</string>
+    <string name="no_records_found">No records found</string>
 </resources>

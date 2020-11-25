@@ -3,12 +3,28 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView"
-        android:name="com.sample.githubconnect.view.fragments.FollowingListFragment"
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layoutManager="LinearLayoutManager"
-        tools:context=".view.fragments.FollowingListFragment"
-        tools:listitem="@layout/fragment_following_item_list"/>
+        android:layout_height="match_parent">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:name="com.sample.githubconnect.view.fragments.FollowingListFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone"
+            app:layoutManager="LinearLayoutManager"
+            tools:context=".view.fragments.FollowingListFragment"
+            tools:listitem="@layout/fragment_following_item_list" />
+
+        <include
+            android:id="@+id/load_state_layout"
+            layout="@layout/loading_state_config"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </FrameLayout>
 </layout>
