@@ -6,6 +6,7 @@ import com.sample.githubconnect.models.repositories.IUserDetailRepository
 import com.sample.githubconnect.models.repositories.IUserListRepository
 import com.sample.githubconnect.models.repositories.UserDetailsRepository
 import com.sample.githubconnect.models.repositories.UserListRepository
+import com.sample.githubconnect.models.response.ResponseHandler
 import com.sample.githubconnect.util.ConnectionHelper
 import com.sample.githubconnect.viewmodel.UserDetailViewModel
 import com.sample.githubconnect.viewmodel.UserDetailViewModelFactory
@@ -21,10 +22,11 @@ val gitHubModuleInfo = module {
 
     single<IUserListRepository> { UserListRepository(get(), get()) }
     single { UserListViewModelFactory(get()) }
-    single<IUserDetailRepository> { UserDetailsRepository(get()) }
+    single<IUserDetailRepository> { UserDetailsRepository(get(), get()) }
     single { UserDetailViewModelFactory(get()) }
     single { RetrofitAPIFactory }
     single { DatabaseFactory }
+    single { ResponseHandler() }
     single { ConnectionHelper(androidContext()) }
 
     viewModel { UserListViewModel(get()) }

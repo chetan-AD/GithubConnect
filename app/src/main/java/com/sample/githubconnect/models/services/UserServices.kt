@@ -17,7 +17,7 @@ interface UserServices {
     ): UserListModel
 
     @GET("users/{username}")
-    suspend fun getUserDetails(@Path("username") userName: String): Response<User>
+    suspend fun getUserDetails(@Path("username") userName: String): User
 
     @GET("users/{username}/followers")
     suspend fun getFollowersList(

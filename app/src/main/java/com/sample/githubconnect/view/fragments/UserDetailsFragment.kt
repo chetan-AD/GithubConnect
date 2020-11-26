@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavOptions
@@ -11,6 +12,7 @@ import androidx.navigation.fragment.NavHostFragment
 import com.google.android.material.tabs.TabLayout
 import com.sample.githubconnect.R
 import com.sample.githubconnect.databinding.FragmentUserDetailsBinding
+import com.sample.githubconnect.models.response.Status
 import com.sample.githubconnect.util.loadUrl
 import com.sample.githubconnect.viewmodel.UserDetailViewModel
 import com.sample.githubconnect.viewmodel.UserListViewModel
@@ -44,6 +46,12 @@ class UserDetailsFragment : Fragment() {
         userDetailViewModel.loadUserDetails(selectedUser?.login)
         binding.imageView.loadUrl(selectedUser?.imageUrl ?: "")
         binding.loginId.text = selectedUser?.login
+        userDetailViewModel.user.observe(viewLifecycleOwner, {
+            when(it.status){
+                Status.ERROR -> Toast.makeText(context, it.message, Toast.LENGTH_LONG).show()
+                else -> { }
+            }
+        })
     }
 
     private fun initTabLayout() {

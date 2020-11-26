@@ -47,7 +47,7 @@
             android:gravity="center"
             android:paddingStart="5dp"
             android:paddingEnd="5dp"
-            android:text="@{userDetailViewModel.user.name}"
+            android:text="@{userDetailViewModel.user.data.name}"
             android:textSize="18sp"
             android:textStyle="bold|italic"
             app:layout_constraintEnd_toEndOf="parent"
@@ -61,7 +61,7 @@
             android:gravity="center"
             android:paddingStart="5dp"
             android:paddingEnd="5dp"
-            android:text="@{userDetailViewModel.user.bio}"
+            android:text="@{userDetailViewModel.user.data.bio}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/userName" />

@@ -8,12 +8,13 @@ import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import com.sample.githubconnect.models.entities.User
 import com.sample.githubconnect.models.repositories.IUserDetailRepository
+import com.sample.githubconnect.models.response.Resource
 import com.sample.githubconnect.util.asLiveData
 import kotlinx.coroutines.launch
 
 class UserDetailViewModel(private var repository: IUserDetailRepository) : ViewModel() {
     private var lastSearch: String? = ""
-    private val userLiveData = MediatorLiveData<User>()
+    private val userLiveData = MediatorLiveData<Resource<User>>()
     private val followerListLiveData = MediatorLiveData<PagingData<User>>()
     private val followingListLiveData = MediatorLiveData<PagingData<User>>()
 
@@ -43,9 +44,7 @@ class UserDetailViewModel(private var repository: IUserDetailRepository) : ViewM
     }
 
     private suspend fun getUserDetails(userName: String) {
-        userLiveData.addSource(repository.getUserDetails(userName)) {
-            userLiveData.value = it
-        }
+        userLiveData.value = repository.getUserDetails(userName)
     }
 
     private suspend fun getUserFollowing(userName: String) {

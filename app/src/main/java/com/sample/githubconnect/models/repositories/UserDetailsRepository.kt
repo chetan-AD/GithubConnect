@@ -1,7 +1,5 @@
 package com.sample.githubconnect.models.repositories
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
@@ -9,20 +7,19 @@ import com.sample.githubconnect.models.RetrofitAPIFactory
 import com.sample.githubconnect.models.data.GithubFollowersPagingSource
 import com.sample.githubconnect.models.data.GithubFollowingPagingSource
 import com.sample.githubconnect.models.entities.User
+import com.sample.githubconnect.models.response.Resource
+import com.sample.githubconnect.models.response.ResponseHandler
 import com.sample.githubconnect.models.services.UserServices
 import kotlinx.coroutines.flow.Flow
 
-class UserDetailsRepository(private val service: UserServices,) : IUserDetailRepository {
-    private var user: MutableLiveData<User> = MutableLiveData()
+class UserDetailsRepository(private val service: UserServices, private val responseHandler : ResponseHandler) : IUserDetailRepository {
 
-    override suspend fun getUserDetails(userName: String): LiveData<User> {
-        val response = RetrofitAPIFactory.retrofitAPI().getUserDetails(userName)
-        if (response.isSuccessful) {
-            user.value = response.body()
-        } else {
-            user.value = null
+    override suspend fun getUserDetails(userName: String): Resource<User> {
+        return try {
+            responseHandler.handleSuccess(RetrofitAPIFactory.retrofitAPI().getUserDetails(userName))
+        } catch (e: Exception) {
+            responseHandler.handleException(e)
         }
-        return user
     }
 
     override suspend fun getFollowersList(userName: String): Flow<PagingData<User>> {
