@@ -1,18 +1,17 @@
 package com.sample.githubconnect.viewmodel
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.paging.PagingData
 import com.sample.githubconnect.models.entities.User
 import com.sample.githubconnect.models.repositories.IUserDetailRepository
+import com.sample.githubconnect.models.response.Resource
+import com.sample.githubconnect.models.response.ResponseHandler
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOf
 
 class FakeUserDetailRepository : IUserDetailRepository {
-
-    override suspend fun getUserDetails(userName: String): LiveData<User> {
-        var user = MutableLiveData<User>()
-        user.value = User(
+    private val responseHandler : ResponseHandler = ResponseHandler()
+    override suspend fun getUserDetails(userName: String): Resource<User> {
+        return responseHandler.handleSuccess(User(
             1,
             "user1",
             "https://ex.com/1",
@@ -21,8 +20,7 @@ class FakeUserDetailRepository : IUserDetailRepository {
             "https://ex.com/1",
             "",
             ""
-        )
-        return user;
+        ))
     }
 
     override suspend fun getFollowersList(userName: String): Flow<PagingData<User>> {

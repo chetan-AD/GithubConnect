@@ -40,15 +40,15 @@ class UserDetailViewModelTest {
         viewModel.loadUserDetails("user1")
 
         //Test User Update
-        var userDetail = viewModel.user.getOrAwaitValue()
-        assertEquals(1, userDetail.id)
+        val userDetail = viewModel.user.getOrAwaitValue()
+        assertEquals(1, userDetail.data!!.id)
 
         //Test Following List
-        var followingList = viewModel.followingList.getOrAwaitValue()
+        val followingList = viewModel.followingList.getOrAwaitValue()
         assertEquals(2, followingList.collectData().size)
 
         //Test Follower List
-        var followerList = viewModel.followerList.getOrAwaitValue()
+        val followerList = viewModel.followerList.getOrAwaitValue()
         assertEquals(3, followerList.collectData().size)
     }
 }
